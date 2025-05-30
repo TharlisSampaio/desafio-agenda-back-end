@@ -17,6 +17,8 @@ public class Agenda {
 
     private String sobrenome;
 
+    private String telefone;
+
     public long getId() {
         return id;
     }
@@ -41,5 +43,12 @@ public class Agenda {
         this.sobrenome = sobrenome;
     }
 
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void serTelefone(String telefone) {
+        this.telefone = telefone;
+    }
     
 }

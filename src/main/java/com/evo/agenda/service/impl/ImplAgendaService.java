@@ -1,6 +1,7 @@
 package com.evo.agenda.service.impl;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,8 @@ public class ImplAgendaService implements AgendaService {
     @Override
     public Agenda findById(Long id) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+        var agenda = this.agendaRepository.findById(id).orElseThrow(NoSuchElementException::new);
+        return agenda;
     }
 
     @Override
