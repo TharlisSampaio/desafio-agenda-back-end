@@ -19,6 +19,14 @@ public class Agenda {
 
     private String telefone;
 
+    public Agenda(){}
+
+    public Agenda(String nome, String sobrenome, String telefone) {
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.telefone = telefone;
+    }
+
     public long getId() {
         return id;
     }

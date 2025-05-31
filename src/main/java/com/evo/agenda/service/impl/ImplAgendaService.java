@@ -6,6 +6,8 @@ import java.util.NoSuchElementException;
 import org.springframework.stereotype.Service;
 
 import com.evo.agenda.model.Agenda;
+import com.evo.agenda.model.dto.CreatedAgendaDto;
+import com.evo.agenda.model.dto.UpdateAgendaDto;
 import com.evo.agenda.repository.AgendaRepository;
 import com.evo.agenda.service.AgendaService;
 
@@ -24,9 +26,16 @@ public class ImplAgendaService implements AgendaService {
     }
 
     @Override
-    public Agenda createAgenda(Agenda agendaToCreate) {
-        this.agendaRepository.save(agendaToCreate);
-        return agendaToCreate;
+    public Agenda createAgenda(CreatedAgendaDto agendaToCreate) {
+
+        var entity = new Agenda(
+            agendaToCreate.nome(),
+            agendaToCreate.sobrenome(),
+            agendaToCreate.telefone()
+        );
+
+        this.agendaRepository.save(entity);
+        return entity;
     }
 
     @Override
@@ -41,20 +50,20 @@ public class ImplAgendaService implements AgendaService {
     }
 
     @Override
-    public Agenda updateAgenda(Long id, Agenda agendaToUpdate) {
+    public Agenda updateAgenda(Long id, UpdateAgendaDto updateAgendaDto) {
         var entity = this.agendaRepository.findById(id);
 
         if(entity.isPresent()){
             var agenda = entity.get();
 
-            if(agendaToUpdate.getNome() != null){
-                agenda.setNome(agendaToUpdate.getNome());
+            if(updateAgendaDto.nome() != null){
+                agenda.setNome(updateAgendaDto.nome());
             }
-            if(agendaToUpdate.getSobrenome() != null){
-                agenda.setSobrenome(agendaToUpdate.getSobrenome());
+            if(updateAgendaDto.sobrenome() != null){
+                agenda.setSobrenome(updateAgendaDto.sobrenome());
             }
-            if(agendaToUpdate.getTelefone() != null){
-                agenda.setTelefone(agendaToUpdate.getTelefone());
+            if(updateAgendaDto.telefone() != null){
+                agenda.setTelefone(updateAgendaDto.telefone());
             }
             this.agendaRepository.save(agenda);
         }
