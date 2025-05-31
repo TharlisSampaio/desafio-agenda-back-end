@@ -7,8 +7,8 @@ import com.evo.agenda.model.Agenda;
 public interface AgendaService {
 
     Agenda findById(Long id);
-    Agenda createAgenda(Agenda agenda);
+    Agenda createAgenda(Agenda agendaToCreate);
     List<Agenda> getAll();
-    Agenda deleteAgenda(Long id);
-    Agenda updateAgenda(Long id, Agenda agenda);
+    void deleteAgenda(Long id);
+    Agenda updateAgenda(Long id, Agenda agendaToUpdate);
 }

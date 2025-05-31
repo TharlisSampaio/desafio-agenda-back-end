@@ -19,34 +19,46 @@ public class ImplAgendaService implements AgendaService {
 
     @Override
     public Agenda findById(Long id) {
-        // TODO Auto-generated method stub
         var agenda = this.agendaRepository.findById(id).orElseThrow(NoSuchElementException::new);
         return agenda;
     }
 
     @Override
-    public Agenda createAgenda(Agenda agenda) {
-        // TODO Auto-generated method stub
-        this.agendaRepository.save(agenda);
-        return agenda;
+    public Agenda createAgenda(Agenda agendaToCreate) {
+        this.agendaRepository.save(agendaToCreate);
+        return agendaToCreate;
     }
 
     @Override
     public List<Agenda> getAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAll'");
+        List<Agenda> agendas = this.agendaRepository.findAll();
+        return agendas;
     }
 
     @Override
-    public Agenda deleteAgenda(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteAgenda'");
+    public void deleteAgenda(Long id) {
+        this.agendaRepository.deleteById(id);
     }
 
     @Override
-    public Agenda updateAgenda(Long id, Agenda agenda) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateAgenda'");
+    public Agenda updateAgenda(Long id, Agenda agendaToUpdate) {
+        var entity = this.agendaRepository.findById(id);
+
+        if(entity.isPresent()){
+            var agenda = entity.get();
+
+            if(agendaToUpdate.getNome() != null){
+                agenda.setNome(agendaToUpdate.getNome());
+            }
+            if(agendaToUpdate.getSobrenome() != null){
+                agenda.setSobrenome(agendaToUpdate.getSobrenome());
+            }
+            if(agendaToUpdate.getTelefone() != null){
+                agenda.setTelefone(agendaToUpdate.getTelefone());
+            }
+            this.agendaRepository.save(agenda);
+        }
+        return findById(id);
     }
     
 }

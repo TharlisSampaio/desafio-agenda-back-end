@@ -47,7 +47,7 @@ public class Agenda {
         return telefone;
     }
 
-    public void serTelefone(String telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
     
