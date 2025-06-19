@@ -41,6 +41,7 @@ public class ImplAgendaService implements AgendaService {
     @Override
     public List<Agenda> getAll() {
         List<Agenda> agendas = this.agendaRepository.findAll();
+        agendas.sort((a, b) -> a.getNome().compareToIgnoreCase(b.getNome()));
         return agendas;
     }
 

@@ -66,7 +66,7 @@ Os endpoints podem ser consultados através do Swagger
 }
 ```
 
-### `GET`: Retorna uma lista de agendas
+### `GET`: Retorna uma lista de agendas em ordem alfabetica (pelo nome)
 ```
 /api/agenda
 ```
